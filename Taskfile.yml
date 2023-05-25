@@ -1,0 +1,20 @@
+version: "3"
+  tasks:
+    run:
+      desc: Run main app
+      cmd:
+        - GOFLAGS=-mod=mod tinygo run -target=gameboy-advance main.go
+    test:
+      desc: Run test app
+      cmds:
+        - GOFLAGS=-mod=mod tinygo run -target=gameboy-advance display-test.go
+    build:
+      desc: Build gba binary
+      cmds:
+        - GOFLAGS=-mod=mod tinygo build -size short -o bin/main.elf -target=gameboy-advance main.go
+    build-mgba:
+      desc: Build mGBA compatable binary
+      cmds:
+        - GOFLAGS=-mod=mod tinygo build -size short -o bin/main.elf -target=gameboy-advance main.go
+        - mv bin/main.elf bin/main.gba
+
